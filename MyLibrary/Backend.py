@@ -1,8 +1,10 @@
 import sqlite3
 
+strSQLiteDBAddr="C:/Users/Soheil/PycharmProjects/Roxi-Lib/MyLibrary/MyBookLibrary.db"
+#strSQLiteDBAddr="C:/Users/KianRayaneh/PycharmProjects/PythonProject1/MyLibrary/MyBookLibrary.db"
 
 def create_table():
-    conn = sqlite3.connect("C:/Users/KianRayaneh/PycharmProjects/PythonProject1/MyLibrary/MyBookLibrary.db")
+    conn = sqlite3.connect(strSQLiteDBAddr)
     cursor1 = conn.cursor()
     cursor1.execute("""CREATE TABLE IF NOT EXISTS 
 MyBookLibrary1
@@ -20,7 +22,7 @@ MyBookLibrary1
 
 
 def insert(title, author, years, isbn):
-    conn = sqlite3.connect("C:/Users/KianRayaneh/PycharmProjects/PythonProject1/MyLibrary/MyBookLibrary.db")
+    conn = sqlite3.connect(strSQLiteDBAddr)
     cursor1 = conn.cursor()
     cursor1.execute("INSERT INTO MyBookLibrary1 (title,author,years,isbn) VALUES (?,?,?,?)",
                     (title, author, years, isbn))
@@ -31,7 +33,7 @@ def insert(title, author, years, isbn):
 # insert("Jvues","Bahram Asadi", 2017, 35941)
 
 def view():
-    conn = sqlite3.connect("C:/Users/KianRayaneh/PycharmProjects/PythonProject1/MyLibrary/MyBookLibrary.db")
+    conn = sqlite3.connect(strSQLiteDBAddr)
     cursor1 = conn.cursor()
     cursor1.execute("SELECT * FROM MyBookLibrary1")
     rows = cursor1.fetchall()
