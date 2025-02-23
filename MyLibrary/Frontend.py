@@ -23,13 +23,14 @@ def view_all():
 
 def search_entry():
     delete_listbox()
-    searched_books = Backend.search(titleEntry.get(), authorEntry.get(), yearEntry.get(), ISBNEntry.get())
+    #searched_books = Backend.search(titleEntry.get(), authorEntry.get(), yearEntry.get(), ISBNEntry.get())
+    searched_books = Backend.search(titleEntry.get())
     list_result(searched_books)
 
 
 def add_entry():
-    added_books = Backend.insert(titleEntry.get(), authorEntry.get(), yearEntry.get(), ISBNEntry.get())
-    list_result(added_books)
+    Backend.insert(titleEntry.get(), authorEntry.get(), yearEntry.get(), ISBNEntry.get())
+    view_all()
 
 
 def get_selected_row(_):
@@ -62,7 +63,7 @@ def delete_items():
 
 def update_entry():
     global selected_item
-    Backend.update(selected_item[0], titleEntry.get(), authorEntry.get(), yearEntry.get(), ISBNEntry.get())
+    Backend.update(titleEntry.get(), authorEntry.get(), yearEntry.get(), ISBNEntry.get(), selected_item[0])
     view_all()
 
 
@@ -116,5 +117,5 @@ scroll_bar.pack(side=RIGHT)
 scroll_bar.configure(command=listBox.yview)
 listBox.configure(yscrollcommand=scroll_bar.set)
 # ===============================================================================
-
+view_all()
 bookLIB.mainloop()
